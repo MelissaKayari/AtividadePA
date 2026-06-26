@@ -1,94 +1,115 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class App {
     public static void main(String[] args) throws Exception {
-       Scanner inUser = new Scanner(System.in);
-       ArrayList<String> listaNomes = new ArrayList<>();
-       
-       int opcaoNome = 0;
-       int opcao = 0;
-       String novoNome = "";
-       
-       
-            do{
+        Scanner inUser = new Scanner (System.in);
+         ArrayList<String> listaCompras = new ArrayList<>();
+
+    int opcaoLista = 0;
+    int opcao = 0;
+    String novoItem;
+    int contadora = 0; 
+    // não tenho certeza sobre a contadora
+    
+
+    
+              do{
+
                 try{
-                    System.out.println("""
-                    Bem vindos ao programa lista de nomes
+    System.out.println("""
+                Bem vindos ao programa lista de compras
 
-                    Escolha a opção desejada:
+                Escolha a opção desejada
 
+                1 - Criar um nova lista de compras
+                2 - Sair
+            
+        """);
+        opcaoLista = inUser.nextInt();
+        inUser.nextLine();
 
-                    1 - Criar uma nova lista de nomes
-                    2 - Sair
+        switch(opcaoLista){
+            case 1 -> {System.out.println("Lista criada com sucesso!");
 
-
+                do{
+                    System.out.println(""" 
+                        escolha a opcao desejada:
+                        1 - Adicionar aum item a lista
+                        2 - Remover um item a lista
+                        3 - Exibir a lista de compras
+                        4 - Limpar a lista de compras
+                        5 - alterar item
+                        6 - Voltar ao menu principal 
                     """);
-                    opcaoNome = inUser.nextInt();
+                     
+                    opcao = inUser.nextInt();
                     inUser.nextLine();
 
-
-                    switch(opcaoNome){
+                    switch(opcao){
                         case 1 -> {
-                            System.out.println("Lista Criada com sucesso");
+                            System.out.println("Você escolheu criar um item da lista");
+                            System.out.println("Digite o nome do produto");
+                            
+                            novoItem = inUser.nextLine();
+                            listaCompras.add(novoItem);
 
+                        }
 
-                            do{
-                                System.out.println("""
-                                        Escolha a opção desejada:
-                                        1 - Adicionar um nome a lista
-                                        2 - Ver a sua lista
-                                        3 - Sair
-                                        """);
-                                   
-                                opcao = inUser.nextInt();
-                                inUser.nextLine();
-                                   
-                                switch(opcao){
-                                case 1 -> {
-                                    System.out.println("Você escolheu criar um item da lista ");
-                                    System.out.println("Digite o nome da atividade ");                                    
+                          case 2 -> {
+                                    System.out.println("Você escolheu remover uma atividade:");
+                                    String comprasRemover = inUser.nextLine();
 
+                                    boolean removido = listaCompras.remove(comprasRemover);
 
-                                    novoNome = inUser.nextLine();
-                                    listaNomes.add(novoNome);
-
-
-                                }
-                                case 2 ->{
-                                    System.out.println("Você escolheu ver a lista");
-                                     listaNomes.sort(null);
-
-                                        System.out.println("Nomes em ordem alfabética:");
-                                        for (String nome : listaNomes) {
-                                         System.out.println(nome);
-                                      
-
+                                if (removido) {
+                                    System.out.println("Compra removida com sucesso!");
+                                } else {
+                                    System.out.println("Item não encontrado.");
                                     }
                                 }
-                                
-                                }
-                           
-                             }while(opcao !=3);                    
 
 
 
-
-                                                                                                                   
+                        case 3 ->{
+                            System.out.println("Você escolheu ver a lista");
+                            for(String item : listaCompras){
+                                System.out.printf("%d %s \n", contadora, item);
+                                contadora++;
+                            }
                         }
-                        case 2 -> System.out.println("Obrigado por usar o nosso sistema");
-                        default -> System.out.println("opção invalida");
-                    }
-           
-                }catch(Exception erro){
-                    System.out.println("Erro!!! Entrada invalida");
-                    inUser.nextLine();
-                    opcaoNome = 1;
-                }
-           
-            }while(opcaoNome != 2);        
-       
-       inUser.close();
+
+                        case 4 -> {
+        listaCompras.clear();
+        System.out.println("Lista de compras limpa com sucesso!");
     }
+
+                    case 5 -> {
+            
+}
+
+
+                    }
+
+                }while(opcao != 5);
+
+
+            }
+            case 2 -> System.out.println("Obrigada por utilizar nosso sistema.");
+            default -> System.out.println("Opção inválida");
+            }
+   
+
+    
+
+    }catch(Exception erro){
+        System.out.println("Erro na Entrada");
+        opcaoLista = 1;
+    }
+         }while(opcaoLista != 2);
+
+         inUser.close();
+    }
+      
+  
 }
