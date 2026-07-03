@@ -82,23 +82,25 @@ public class App {
         listaCompras.clear();
         System.out.println("Lista de compras limpa com sucesso!");
     }
+case 5 -> {
+    for (int i = 0; i < listaCompras.size(); i++) {
+        System.out.println((i + 1) + " - " + listaCompras.get(i));
+    }
 
-                    case 5 -> {
-                         System.out.println("Digite o nome do item que deseja alterar:");
-                         String itemAntigo = inUser.nextLine();
+    System.out.println("Digite o número do item que deseja alterar:");
+    int alterar = inUser.nextInt();
+    inUser.nextLine();
 
-                        int indice = listaCompras.indexOf(itemAntigo);
+    if (alterar >= 1 && alterar <= listaCompras.size()) {
+        System.out.println("Digite o novo nome:");
+        String novoNome = inUser.nextLine();
 
-                        if (indice != -1) {
-                        System.out.println("Digite o novo nome do item:");
-                        String itemNovo = inUser.nextLine();
+        listaCompras.set(alterar - 1, novoNome);
 
-                        listaCompras.set(indice, itemNovo);
-
-                          System.out.println("Item alterado com sucesso!");
-                          } else {
-                            System.out.println("Item não encontrado.");
-                              }   
+        System.out.println("Item alterado com sucesso!");
+    } else {
+        System.out.println("Número inválido.");
+    }
 }
 
 
